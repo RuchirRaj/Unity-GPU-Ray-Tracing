@@ -3,65 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 using Unity.Collections;
-using MPipeline;
-public struct PipelineBaseBuffer
-{
-    public ComputeBuffer clusterBuffer;         //ObjectInfo
-    public ComputeBuffer instanceCountBuffer;   //uint
-    public ComputeBuffer resultBuffer;          //uint
-    public ComputeBuffer verticesBuffer;        //Point
-    public int clusterCount;
-    public const int INDIRECTSIZE = 20;
-    public const int UINTSIZE = 4;
-    public const int CLUSTERCLIPCOUNT = 256;
-    public const int CLUSTERVERTEXCOUNT = CLUSTERCLIPCOUNT * 6 / 4;
-    public static class ComputeShaderKernels
-    {
-        /// <summary>
-        /// Cluster cull with only frustum culling
-        /// </summary>
-        public const int ClusterCullKernel = 0;
-        /// <summary>
-        /// Clear Cluster data's kernel count
-        /// </summary>
-        public const int ClearClusterKernel = 1;
-        /// <summary>
-        /// Cluster cull with frustum & occlusion culling
-        /// </summary>
-        public const int ClusterCullOccKernel = 2;
-    }
-}
-
-public struct OcclusionBuffers
-{
-    public ComputeBuffer reCheckCount;
-    public ComputeBuffer reCheckResult;
-    public ComputeBuffer dispatchBuffer;
-    public const int FrustumFilter = 2;
-    public const int OcclusionRecheck = 3;
-    public const int ClearOcclusionData = 4;
-}
-
-
-public struct AspectInfo
-{
-    public Vector3 inPlanePoint;
-    public Vector3 planeNormal;
-    public float size;
-}
-[System.Serializable]
-public struct ShadowmapSettings
-{
-    public int resolution;
-    public float firstLevelDistance;
-    public float secondLevelDistance;
-    public float thirdLevelDistance;
-    public float farestDistance;
-    public Vector4 bias;
-    public Vector4 normalBias;
-    public Vector4 cascadeSoftValue;
-}
-
 [System.Serializable]
 public unsafe struct Matrix3x4
 {
@@ -125,38 +66,6 @@ public unsafe struct Matrix3x4
     }
 }
 
-public struct ShadowMapComponent
-{
-    public OrthoCam shadCam;
-    public Material shadowDepthMaterial;
-    public RenderTexture shadowmapTexture;
-    public NativeArray<Vector3> frustumCorners;
-    public NativeArray<AspectInfo> shadowFrustumPlanes;
-    public Light light;
-}
-[System.Serializable]
-public struct Point
-{
-    public Vector3 vertex;
-    public Vector4 tangent;
-    public Vector3 normal;
-    public Vector2 texcoord;
-    public const int SIZE = 48;
-}
-[System.Serializable]
-public struct ClusterMeshData
-{
-    public Vector3 extent;
-    public Vector3 position;
-    public const int SIZE = 24;
-}
-public struct PerObjectData
-{
-    public Vector3 extent;
-    public uint instanceOffset;
-    public const int SIZE = 16;
-}
-
 public struct PerspCam
 {
     public Vector3 right;
@@ -214,12 +123,6 @@ public struct OrthoCam
     }
 }
 
-public struct StaticFit
-{
-    public int resolution;
-    public Camera mainCamTrans;
-    public NativeArray<Vector3> frustumCorners;
-}
 public struct RenderArray
 {
     public NativeList<Vector4> farFrustumCorner;
@@ -243,9 +146,8 @@ public struct RenderArray
 
 public struct PipelineCommandData
 {
-    public Matrix4x4 vp;
-    public Matrix4x4 inverseVP;
-    public PipelineBaseBuffer baseBuffer;
+    public Matrix4x4 vp;    //View Projection Matrix
+    public Matrix4x4 inverseVP; //View Projection Inverse Matrix
     public RenderArray arrayCollection;
     public MPipeline.PipelineResources resources;
 }

@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dbd0823b00f58a4caf0bda5f81b5c91, type: 3}
   m_Name: PipelineResource
   m_EditorClassIdentifier: 
-  unlitTestShader: {fileID: 0}
+  unlitTestShader: {fileID: 4800000, guid: b181ac614532b664a907d943ca9b34b7, type: 3}
