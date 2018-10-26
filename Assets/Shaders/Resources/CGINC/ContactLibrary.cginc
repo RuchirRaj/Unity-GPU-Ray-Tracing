@@ -70,7 +70,7 @@ float IntersectTriangle(float3 orig, float3 dir, float3 v0, float3 v1, float3 v2
                 {
                     TargetObject tar = _ObjectBuffer[i];
                     if(SphereContact(orig, dir, tar.sphere) < 0.5) continue;
-                    for(uint x = tar.startIndex; x < tar.count;){
+                    for(uint x = tar.startIndex; x < tar.count + tar.startIndex;){
                     float current_t = 0;
                     float2 current_uv = 0;
                     Point v0 = _TriangleBuffer[x++];
