@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dbd0823b00f58a4caf0bda5f81b5c91, type: 3}
   m_Name: PipelineResource
   m_EditorClassIdentifier: 
-  unlitTestShader: {fileID: 4800000, guid: b181ac614532b664a907d943ca9b34b7, type: 3}
+  gbufferShader: {fileID: 4800000, guid: 4fd8f3322cf3a0f43a9a1c3a5a93cd88, type: 3}
+  rayTracingTestShader: {fileID: 4800000, guid: 275a618b13c792a43afff1ad017c5f37,
+    type: 3}

@@ -6,6 +6,7 @@ namespace MPipeline
     //[CreateAssetMenu]
     public class PipelineResources : ScriptableObject
     {
-        public Shader unlitTestShader;
+        public Shader gbufferShader;
+        public Shader rayTracingTestShader;
     }
 }
